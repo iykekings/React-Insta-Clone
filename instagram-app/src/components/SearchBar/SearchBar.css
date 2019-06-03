@@ -1,0 +1,30 @@
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 5vw;
+}
+
+.search-bar > * {
+  display: flex;
+  align-items: center;
+}
+.spacer {
+  flex: 1;
+}
+
+.img-logo {
+  width: 12rem;
+}
+
+img {
+  width: 100%;
+}
+
+.s-logo .icon-container {
+  padding: 0;
+  padding-right: 1.5rem;
+  margin-right: 1.5rem;
+  width: 60%;
+  border-right: grey 2px solid;
+}
