@@ -15,7 +15,7 @@ const SearchBar = () => {
       <div className="spacer" />
       <div className="s-input">
         <div className="input-bg">
-          <Icon icon="search" fill="#2a2a2a" />
+          <Icon icon="search" fill="grey" />
           <span>Search</span>
         </div>
         <div className="input-main">
