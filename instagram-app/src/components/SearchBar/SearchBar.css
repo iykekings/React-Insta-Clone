@@ -54,6 +54,7 @@
   color: grey;
   width: 100%;
   justify-content: center;
+  z-index: -1;
 }
 .s-input .input-bg .icon-container {
   width: 11px;

@@ -27,8 +27,8 @@ const SearchBar = () => {
       <div className="spacer" />
       <div className="s-icons">
         <Icon icon="compass" fill="#2a2a2a" />
-        <Icon icon="heart" stroke="#2a2a2a" strokeWidth="15px" />
-        <Icon icon="user" fill="#2a2a2a" />
+        <Icon icon="heart2" fill="#2a2a2a" />
+        <Icon icon="user2" fill="#2a2a2a" />
       </div>
     </div>
   );
