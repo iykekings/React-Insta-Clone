@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import Icon from '../Icons/Icon';
 import './PostContainer.css';
 import CommentSection from '../CommentSection/CommentSection';
@@ -15,7 +16,7 @@ const PostContainer = ({
   liked,
   toggleLike
 }) => {
-  // const getTime = str => moment(str, "MMMM Do YYYY, h:mm:ss a").fromNow();
+  const getTime = str => moment(str, "MMMM Do YYYY, h:mm:ss a").fromNow();
   return (
     <article className="post-container">
       <div className="p-header">
@@ -39,7 +40,7 @@ const PostContainer = ({
         </div>
         <p className="p-likes">{likes} likes</p>
         <CommentSection comments={comments} />
-        <p className="p-timestamp">{timestamp}</p>
+        <p className="p-timestamp">{getTime(timestamp)}</p>
         <form className="comment-form">
           <input
             type="text"
