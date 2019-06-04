@@ -3,7 +3,6 @@ import moment from 'moment';
 import Icon from '../Icons/Icon';
 import './PostContainer.css';
 import CommentSection from '../CommentSection/CommentSection';
-// var moment = require('moment');
 
 const PostContainer = ({
   id,
@@ -14,7 +13,8 @@ const PostContainer = ({
   timestamp,
   comments,
   liked,
-  toggleLike
+  toggleLike,
+  addComment
 }) => {
   const getTime = str => moment(str, "MMMM Do YYYY, h:mm:ss a").fromNow();
   return (
@@ -41,11 +41,11 @@ const PostContainer = ({
         <p className="p-likes">{likes} likes</p>
         <CommentSection comments={comments} />
         <p className="p-timestamp">{getTime(timestamp)}</p>
-        <form className="comment-form">
+        <form className="comment-form" onSubmit={(e, id) => addComment(e, id)}>
           <input
             type="text"
             name="comment"
-            id="comment"
+            id={id}
             placeholder="Add a comment..."
           />
           <input type="submit" value="..." />
