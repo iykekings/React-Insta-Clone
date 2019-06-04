@@ -9,7 +9,8 @@ const PostContainer = ({
   imageUrl,
   likes,
   timestamp,
-  comments
+  comments,
+  liked
 }) => {
   return (
     <article className="post-container">
@@ -24,7 +25,7 @@ const PostContainer = ({
       </div>
       <div className="p-meta">
         <div className="p-icons">
-          <Icon icon="love" fill="deeppink" />
+          <Icon icon="love" fill={!!liked ? "deeppink": "#2a2a2a"} />
           <Icon icon="comment" fill="#2a2a2a" />
         </div>
         <p className="p-likes">{likes} likes</p>
