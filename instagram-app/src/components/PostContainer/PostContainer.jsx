@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from '../Icons/Icon';
+import './PostContainer.css';
 import CommentSection from '../CommentSection/CommentSection';
 
 const PostContainer = ({
@@ -23,7 +24,7 @@ const PostContainer = ({
       </div>
       <div className="p-meta">
         <div className="p-icons">
-          <Icon icon="love" fill="#2a2a2a" />
+          <Icon icon="love" fill="deeppink" />
           <Icon icon="comment" fill="#2a2a2a" />
         </div>
         <p className="p-likes">{likes} likes</p>
@@ -36,6 +37,7 @@ const PostContainer = ({
             id="comment"
             placeholder="Add a comment..."
           />
+          <input type="submit" value="..." />
         </form>
       </div>
     </article>
