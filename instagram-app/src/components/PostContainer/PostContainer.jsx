@@ -5,13 +5,15 @@ import CommentSection from '../CommentSection/CommentSection';
 // var moment = require('moment');
 
 const PostContainer = ({
+  id,
   username,
   thumbnailUrl,
   imageUrl,
   likes,
   timestamp,
   comments,
-  liked
+  liked,
+  toggleLike
 }) => {
   // const getTime = str => moment(str, "MMMM Do YYYY, h:mm:ss a").fromNow();
   return (
@@ -27,7 +29,12 @@ const PostContainer = ({
       </div>
       <div className="p-meta">
         <div className="p-icons">
-          <Icon icon="love" fill={!!liked ? "deeppink": "#2a2a2a"} />
+          <Icon
+            id={id}
+            icon="love"
+            fill={!!liked ? 'deeppink' : '#2a2a2a'}
+            toggleLike={() => toggleLike(id)}
+          />
           <Icon icon="comment" fill="#2a2a2a" />
         </div>
         <p className="p-likes">{likes} likes</p>

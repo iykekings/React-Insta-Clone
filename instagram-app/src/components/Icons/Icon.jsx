@@ -7,10 +7,12 @@ const Icon = ({
   fill = 'transparent',
   stroke = 'tranparent',
   strokeWidth = '0px',
-  viewBox = '0 0 512 512'
+  viewBox = '0 0 512 512',
+  id,
+  toggleLike
 }) => {
   return (
-    <div className="icon-container">
+    <div className="icon-container" onClick={() => toggleLike(id)}>
       <svg
         fill={fill}
         stroke={stroke}
