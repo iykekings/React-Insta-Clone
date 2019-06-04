@@ -5,25 +5,23 @@ import Storage from './localStorage';
 import dummyData from './assets/dummy-data';
 import PostContainer from './components/PostContainer/PostContainer';
 
-
-export default class App extends Component{
+export default class App extends Component {
   constructor() {
     super();
     this.state = {
       posts: [],
-      serachResult: []
-    }
+      searchValue: '',
+      searchResult: []
+    };
     this.store = new Storage('posts');
   }
 
   componentDidMount() {
     const itemsInStore = this.store.getAllItems();
-    if(itemsInStore.length < 1) {
-      this.setState({posts: dummyData});
-      console.log(this.state);
+    if (itemsInStore.length < 1) {
+      this.setState({ posts: dummyData });
     } else {
-      this.setState({posts: itemsInStore})
-      console.log(itemsInStore);
+      this.setState({ posts: itemsInStore });
     }
   }
 
@@ -34,11 +32,17 @@ export default class App extends Component{
   toggleLike = id => {
     const newPosts = this.state.posts.map(post => {
       if (post.id === id) {
-        post.liked = !post.liked;
+        if (post.liked === true) {
+          post.liked = false;
+          --post.likes;
+        } else {
+          post.liked = true;
+          ++post.likes;
+        }
       }
       return post;
     });
-  this.setState({posts: [...newPosts]});
+    this.setState({ posts: [...newPosts] });
   };
 
   addComment = (e, id) => {
@@ -50,24 +54,24 @@ export default class App extends Component{
       }
       return post;
     });
-    this.setState({posts: [...newPosts]});
+    this.setState({ posts: [...newPosts] });
     input.value = '';
   };
   render() {
     return (
-    <div className="App">
-      <SearchBar />
-      <section className="all-posts">
-        {this.state.posts.map(post => (
-          <PostContainer
-            key={post.username}
-            {...post}
-            addComment={(e, id) => this.addComment(e, post.id)}
-            toggleLike={() => this.toggleLike(post.id)}
-          />
-        ))}
-      </section>
-    </div>
-  );
+      <div className="App">
+        <SearchBar />
+        <section className="all-posts">
+          {this.state.posts.map(post => (
+            <PostContainer
+              key={post.username}
+              {...post}
+              addComment={e => this.addComment(e, post.id)}
+              toggleLike={() => this.toggleLike(post.id)}
+            />
+          ))}
+        </section>
+      </div>
+    );
   }
 }
