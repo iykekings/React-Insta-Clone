@@ -2,6 +2,7 @@ import React from 'react';
 import Icon from '../Icons/Icon';
 import './PostContainer.css';
 import CommentSection from '../CommentSection/CommentSection';
+// var moment = require('moment');
 
 const PostContainer = ({
   username,
@@ -12,6 +13,7 @@ const PostContainer = ({
   comments,
   liked
 }) => {
+  // const getTime = str => moment(str, "MMMM Do YYYY, h:mm:ss a").fromNow();
   return (
     <article className="post-container">
       <div className="p-header">
