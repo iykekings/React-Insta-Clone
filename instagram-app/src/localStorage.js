@@ -13,10 +13,19 @@ export default class Storage {
     all.push(item);
     localStorage.setItem(this.identifier, JSON.stringify(all));
   }
-  addToSubItem(key, item) {
-    let all = this.getAllItems();
-    all[key].push(item);
-    localStorage.setItem(this.identifier, JSON.stringify(all));
+  overrideWith(items) {
+    this.reset();
+    localStorage.setItem(this.identifier, JSON.stringify(items));
+  }
+  addToSubItem(id, key, item) {
+    const all = this.getAllItems();
+    const newItems = all.map(a => {
+      if (a.id === id) {
+        a[key].push(item);
+      }
+      return a;
+    });
+    localStorage.setItem(this.identifier, JSON.stringify(newItems));
   }
 
   reset() {
