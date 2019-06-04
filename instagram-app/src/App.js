@@ -10,7 +10,8 @@ export default class App extends Component{
   constructor() {
     super();
     this.state = {
-      posts: []
+      posts: [],
+      serachResult: []
     }
     this.store = new Storage('posts');
   }
