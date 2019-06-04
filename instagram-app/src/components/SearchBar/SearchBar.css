@@ -1,0 +1,87 @@
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 5vw;
+  margin: 0 2rem;
+  border-bottom: 1px lightgray solid;
+      margin-bottom: 4rem;
+}
+
+.search-bar > * {
+  display: flex;
+  align-items: center;
+}
+.spacer {
+  flex: 1;
+}
+
+.img-logo {
+  width: 12rem;
+  display: flex;
+  align-items: center;
+}
+
+.img-logo:before {
+  content: '';
+  background: #b7b6b6;
+  height: 40px;
+  width: 1px;
+  margin-right: 12px;
+  margin-left: 12px;
+}
+
+.img-logo img {
+  width: 80%;
+}
+
+.s-logo .icon-container {
+  width: 40%;
+}
+
+.s-icons .icon-container {
+  padding: 0.7rem;
+  margin-right: 1.2rem;
+}
+
+/* S-input */
+.s-input {
+  position: relative;
+  height: 2.2rem;
+}
+
+.s-input .input-bg {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  color: grey;
+  width: 100%;
+  justify-content: center;
+  z-index: -1;
+}
+.s-input .input-bg .icon-container {
+  width: 11px;
+  padding: 0;
+  margin-right: 4px;
+}
+.s-input .input-bg span {
+  font-weight: 500;
+}
+.s-input .input-main {
+  height: 100%;
+}
+
+.s-input .input-main form {
+  height: 100%;
+}
+
+.s-input .input-main form input {
+  height: 100%;
+  background: transparent;
+  font-size: 1rem;
+  padding: 0 0.5rem;
+  font-weight: bold;
+  outline: none;
+  color: #2a2a2a;
+  border: 2px solid lightgray;
+}

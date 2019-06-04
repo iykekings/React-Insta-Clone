@@ -1,0 +1,10 @@
+.icon-container {
+  width: 50px;
+  height: auto;
+  padding: 0.5rem;
+}
+
+.icon-container:hover {
+  background: #f2f2f2;
+  border-radius: 20px;
+}
