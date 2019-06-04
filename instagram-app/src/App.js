@@ -45,6 +45,21 @@ export default class App extends Component {
     this.setState({ posts: [...newPosts] });
   };
 
+  runSearch(e) {
+    e.preventDefault();
+    const result = this.state.posts.filter(post =>
+      post.username.includes(this.state.searchValue)
+    );
+    this.setState({ searchResult: result });
+  }
+
+  handleSearchInput(val) {
+    this.setState({searchValue: val});
+    if(val === '') {
+      this.setState({searchResult: []});
+    }
+  }
+
   addComment = (e, id) => {
     e.preventDefault();
     let input = e.target.querySelector('input[type="text"]');
@@ -60,16 +75,30 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <SearchBar />
+        <SearchBar
+          runSearch={e => this.runSearch(e)}
+          searchValue={this.state.searchValue}
+          handleSearchInput={(val) => this.handleSearchInput(val)}
+        />
         <section className="all-posts">
-          {this.state.posts.map(post => (
-            <PostContainer
-              key={post.username}
-              {...post}
-              addComment={e => this.addComment(e, post.id)}
-              toggleLike={() => this.toggleLike(post.id)}
-            />
-          ))}
+          {this.state.searchResult.length > 0 ? <h2 id="search-header">Search Results</h2> : ''}
+          {this.state.searchResult.length > 0
+            ? this.state.searchResult.map(post => (
+                <PostContainer
+                  key={post.username}
+                  {...post}
+                  addComment={e => this.addComment(e, post.id)}
+                  toggleLike={() => this.toggleLike(post.id)}
+                />
+              ))
+            : this.state.posts.map(post => (
+                <PostContainer
+                  key={post.username}
+                  {...post}
+                  addComment={e => this.addComment(e, post.id)}
+                  toggleLike={() => this.toggleLike(post.id)}
+                />
+              ))}
         </section>
       </div>
     );
