@@ -30,6 +30,7 @@ export default class App extends Component {
   }
 
   toggleLike = id => {
+    console.log('clicked');
     const newPosts = this.state.posts.map(post => {
       if (post.id === id) {
         if (post.liked === true) {
