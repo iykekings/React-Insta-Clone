@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
+import PostsPage from './components/PostContainer/PostsPage';
+import LoginPage from './components/Login/Login';
 import withAuthentication from './authentication/withAuthentication';
 
-const HOC = withAuthentication;
+const HigherOrderComponent = withAuthentication(PostsPage)(LoginPage);
 export default class App extends Component {
   constructor() {
     super();
@@ -12,7 +14,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <HOC />
+        <HigherOrderComponent />
       </div>
     );
   }
