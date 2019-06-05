@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
-import PostsPage from './components/PostContainer/PostsPage';
+import withAuthentication from './authentication/withAuthentication';
 
+const HOC = withAuthentication;
 export default class App extends Component {
   constructor() {
     super();
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {
     return (
       <div className="App">
-        <PostsPage />
+        <HOC />
       </div>
     );
   }
