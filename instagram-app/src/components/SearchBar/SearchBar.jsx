@@ -3,7 +3,7 @@ import './SearchBar.css';
 import logo from '../../assets/logo.png';
 import Icon from '../Icons/Icon';
 
-const SearchBar = () => {
+const SearchBar = ({runSearch, searchValue, handleSearchInput}) => {
   return (
     <div className="search-bar">
       <div className="s-logo">
@@ -19,8 +19,8 @@ const SearchBar = () => {
           <span>Search</span>
         </div>
         <div className="input-main">
-          <form>
-            <input type="text" name="search" id="search" />
+          <form onSubmit={(e) => runSearch(e)}>
+            <input type="text" name="search" onChange={(e) => handleSearchInput(e.target.value)} id="search" value={searchValue}/>
           </form>
         </div>
       </div>
