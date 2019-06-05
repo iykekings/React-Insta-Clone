@@ -34,7 +34,7 @@ const PostContainer = ({
             id={id}
             icon="love"
             fill={!!liked ? 'deeppink' : '#2a2a2a'}
-            onClick={() => toggleLike(id)}
+            toggleLike={() => toggleLike(id)}
           />
           <Icon icon="comment" fill="#2a2a2a" />
         </div>

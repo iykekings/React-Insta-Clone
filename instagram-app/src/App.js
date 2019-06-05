@@ -89,7 +89,7 @@ export default class App extends Component {
                   key={post.username}
                   {...post}
                   addComment={e => this.addComment(e, post.id)}
-                  toggleLike={() => this.toggleLike(post.id)}
+                  toggleLike={this.toggleLike}
                 />
               ))
             : this.state.posts.map(post => (
