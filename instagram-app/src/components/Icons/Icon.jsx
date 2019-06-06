@@ -1,34 +1,36 @@
 import React from 'react';
-import './Icon.css';
+// import './Icon.css';
 import IconsPaths from './IconPaths';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-const Icon = ({
-  icon,
-  fill = 'transparent',
-  stroke = 'transparent',
-  strokeWidth = '0px',
-  viewBox = '0 0 512 512',
-  toggleLike,
-  id
-}) => {
-  const toggleClick = () => {
-    if(!!id) {
-      toggleLike(id);
-    }
+const IconContainer = styled.div`
+  height: auto;
+  width: ${props => props.width || '50px'};
+  padding: ${props => props.padding || '0.5rem'};
+  &:hover {
+    background: #f2f2f2;
+    border-radius: 20px;
   }
+  svg {
+    fill: ${props => props.fill || 'transparent'};
+    stroke: ${props => props.stroke || 'transparent'};
+    stroke-width: ${props => props.strokeWidth || '0px'};
+  }
+`;
+
+const Icon = props => {
+  const toggleClick = () => {
+    if (!!props.id) {
+      props.toggleLike(props.id);
+    }
+  };
   return (
-    <div className="icon-container">
-      <svg
-        fill={fill}
-        stroke={stroke}
-        strokeWidth={strokeWidth}
-        viewBox={viewBox}
-        onClick={toggleClick}
-      >
-        {IconsPaths[icon]}
+    <IconContainer {...props}>
+      <svg viewBox={props.viewBox || '0 0 512 512'} onClick={toggleClick}>
+        {IconsPaths[props.icon]}
       </svg>
-    </div>
+    </IconContainer>
   );
 };
 
@@ -40,6 +42,6 @@ Icon.propTypes = {
   viewBox: PropTypes.string,
   toggleLike: PropTypes.func,
   id: PropTypes.string
-}
+};
 
 export default Icon;
