@@ -73,6 +73,23 @@ export default class PostsPage extends Component {
         this.setState({ posts: [...newPosts] });
         input.value = '';
     };
+
+    deleteComment = (id, postId) => {
+        console.log(id, postId);
+        const newPosts = this.state.posts.map(post => {
+            let newPost = [];
+            if (post.id === postId) {
+                const comments = post['comments'].filter(comment => !(`${comment.text}${comment.username}` === id));
+                newPost = {...post, comments}
+            } else {
+                newPost = post;
+            }
+            return newPost;
+        });
+        this.setState({ posts: [...newPosts] });
+        // console.table(newPosts);
+    };
+
     render() {
         return (
             <div className="PostsPage">
@@ -86,6 +103,7 @@ export default class PostsPage extends Component {
                     {this.state.searchResult.length > 0
                         ? this.state.searchResult.map(post => (
                             <PostContainer
+                                deleteComment={this.deleteComment}
                                 key={post.username}
                                 {...post}
                                 addComment={e => this.addComment(e, post.id)}
@@ -94,6 +112,7 @@ export default class PostsPage extends Component {
                         ))
                         : this.state.posts.map(post => (
                             <PostContainer
+                                deleteComment={this.deleteComment}
                                 key={post.username}
                                 {...post}
                                 addComment={e => this.addComment(e, post.id)}

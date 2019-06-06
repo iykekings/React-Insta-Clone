@@ -1,0 +1,19 @@
+.comment-container .icon-container {
+  width: 30px;
+}
+
+.comment-container {
+  position: relative;
+  margin-top: 3px;
+}
+.comment-container:hover .comment-icon {
+  display: inline;
+}
+.comment-icon {
+  display: none;
+  position: absolute;
+  right: 10%;
+}
+.comment-icon:hover svg {
+  fill: #fd4a4a;
+}

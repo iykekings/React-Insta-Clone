@@ -15,7 +15,8 @@ const PostContainer = ({
   comments,
   liked,
   toggleLike,
-  addComment
+  addComment,
+  deleteComment
 }) => {
   const getTime = str => moment(str, 'MMMM Do YYYY, h:mm:ss a').fromNow();
   return (
@@ -40,7 +41,8 @@ const PostContainer = ({
           <Icon icon="comment" fill="#2a2a2a" />
         </div>
         <p className="p-likes">{likes} likes</p>
-        <CommentSection comments={comments} />
+        <CommentSection comments={comments} deleteComment={deleteComment}
+        postId={id} />
         <p className="p-timestamp">{getTime(timestamp)}</p>
         <form className="comment-form" onSubmit={(e, id) => addComment(e, id)}>
           <input
@@ -57,15 +59,16 @@ const PostContainer = ({
 };
 
 PostContainer.propTypes = {
-  id: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
-  thumbnailUrl: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string.isRequired,
-  likes: PropTypes.number.isRequired,
-  timestamp: PropTypes.string.isRequired,
-  comments: PropTypes.arrayOf(PropTypes.object).isRequired,
-  liked: PropTypes.bool.isRequired,
-  toggleLike: PropTypes.func.isRequired,
-  addComment: PropTypes.func.isRequired
+  id: PropTypes.string,
+  username: PropTypes.string,
+  thumbnailUrl: PropTypes.string,
+  imageUrl: PropTypes.string,
+  likes: PropTypes.number,
+  timestamp: PropTypes.string,
+  comments: PropTypes.arrayOf(PropTypes.object),
+  liked: PropTypes.bool,
+  toggleLike: PropTypes.func,
+  addComment: PropTypes.func,
+  deleteComment: PropTypes.func
 };
 export default PostContainer;
