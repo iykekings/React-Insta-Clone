@@ -7,6 +7,7 @@ const IconContainer = styled.div`
   height: auto;
   width: ${props => props.width || '50px'};
   padding: ${props => props.padding || '0.5rem'};
+  margin: ${props => props.margin || '0px'};
   &:hover {
     background: #f2f2f2;
     border-radius: 20px;
@@ -26,7 +27,8 @@ const Icon = props => {
   };
   return (
     <IconContainer {...props}>
-      <svg viewBox={props.viewBox || '0 0 512 512'} onClick={toggleClick}>
+      <svg viewBox={props.viewBox || '0 0 512 512'}
+        onClick={toggleClick}>
         {IconsPaths[props.icon]}
       </svg>
     </IconContainer>
