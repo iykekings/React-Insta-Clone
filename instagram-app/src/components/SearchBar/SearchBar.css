@@ -16,7 +16,8 @@
   flex: 1;
 }
 
-.img-logo {
+/* s-logo */
+/* .img-logo {
   width: 12rem;
   display: flex;
   align-items: center;
@@ -37,10 +38,10 @@
 
 .s-logo .icon-container {
   width: 40%;
-}
+} */
 
 .s-icons .icon-container {
-  padding: 0.7rem;
+  /* padding: 0.7rem; */
   margin-right: 1.2rem;
 }
 

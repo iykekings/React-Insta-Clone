@@ -1,5 +1,4 @@
 import React from 'react';
-// import './Icon.css';
 import IconsPaths from './IconPaths';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
