@@ -75,7 +75,6 @@ export default class PostsPage extends Component {
     };
 
     deleteComment = (id, postId) => {
-        console.log(id, postId);
         const newPosts = this.state.posts.map(post => {
             let newPost = [];
             if (post.id === postId) {
@@ -87,7 +86,6 @@ export default class PostsPage extends Component {
             return newPost;
         });
         this.setState({ posts: [...newPosts] });
-        // console.table(newPosts);
     };
 
     render() {
