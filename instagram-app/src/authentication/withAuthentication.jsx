@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const withAuthentication = PostsPage => LoginPage =>
   class extends React.Component {
@@ -17,5 +18,8 @@ const withAuthentication = PostsPage => LoginPage =>
     }
   };
 
+withAuthentication.PropTypes = {
+  LoginPage: PropTypes.element.isRequired,
+  PostsPage: PropTypes.element.isRequired
+};
 export default withAuthentication;
-

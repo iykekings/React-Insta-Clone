@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import Icon from '../Icons/Icon';
+import PropTypes from 'prop-types';
 import './PostContainer.css';
 import CommentSection from '../CommentSection/CommentSection';
 
@@ -16,7 +17,7 @@ const PostContainer = ({
   toggleLike,
   addComment
 }) => {
-  const getTime = str => moment(str, "MMMM Do YYYY, h:mm:ss a").fromNow();
+  const getTime = str => moment(str, 'MMMM Do YYYY, h:mm:ss a').fromNow();
   return (
     <article className="post-container">
       <div className="p-header">
@@ -55,4 +56,16 @@ const PostContainer = ({
   );
 };
 
+PostContainer.propTypes = {
+  id: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  thumbnailUrl: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  likes: PropTypes.number.isRequired,
+  timestamp: PropTypes.string.isRequired,
+  comments: PropTypes.arrayOf(PropTypes.object).isRequired,
+  liked: PropTypes.bool.isRequired,
+  toggleLike: PropTypes.func.isRequired,
+  addComment: PropTypes.func.isRequired
+};
 export default PostContainer;
