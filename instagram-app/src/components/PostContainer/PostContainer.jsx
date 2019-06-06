@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import Icon from '../Icons/Icon';
+import PropTypes from 'prop-types';
 import './PostContainer.css';
 import CommentSection from '../CommentSection/CommentSection';
 
@@ -14,9 +15,10 @@ const PostContainer = ({
   comments,
   liked,
   toggleLike,
-  addComment
+  addComment,
+  deleteComment
 }) => {
-  const getTime = str => moment(str, "MMMM Do YYYY, h:mm:ss a").fromNow();
+  const getTime = str => moment(str, 'MMMM Do YYYY, h:mm:ss a').fromNow();
   return (
     <article className="post-container">
       <div className="p-header">
@@ -39,7 +41,8 @@ const PostContainer = ({
           <Icon icon="comment" fill="#2a2a2a" />
         </div>
         <p className="p-likes">{likes} likes</p>
-        <CommentSection comments={comments} />
+        <CommentSection comments={comments} deleteComment={deleteComment}
+        postId={id} />
         <p className="p-timestamp">{getTime(timestamp)}</p>
         <form className="comment-form" onSubmit={(e, id) => addComment(e, id)}>
           <input
@@ -55,4 +58,17 @@ const PostContainer = ({
   );
 };
 
+PostContainer.propTypes = {
+  id: PropTypes.string,
+  username: PropTypes.string,
+  thumbnailUrl: PropTypes.string,
+  imageUrl: PropTypes.string,
+  likes: PropTypes.number,
+  timestamp: PropTypes.string,
+  comments: PropTypes.arrayOf(PropTypes.object),
+  liked: PropTypes.bool,
+  toggleLike: PropTypes.func,
+  addComment: PropTypes.func,
+  deleteComment: PropTypes.func
+};
 export default PostContainer;

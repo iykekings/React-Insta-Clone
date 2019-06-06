@@ -1,0 +1,18 @@
+.comment-container .icon-container {
+  width: 30px;
+}
+
+.comment-container {
+  margin-top: 3px;
+  cursor: pointer;
+}
+.comment-container:hover .comment-icon {
+  display: inline;
+}
+.comment-icon {
+  display: none;
+  right: 10%;
+}
+.comment-icon:hover svg {
+  fill: #fd4a4a;
+}

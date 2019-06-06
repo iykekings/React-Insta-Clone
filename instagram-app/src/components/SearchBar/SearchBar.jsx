@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './SearchBar.css';
 import logo from '../../assets/logo.png';
 import Icon from '../Icons/Icon';
@@ -34,4 +35,9 @@ const SearchBar = ({runSearch, searchValue, handleSearchInput}) => {
   );
 };
 
+SearchBar.propTypes = {
+  runSearch: PropTypes.func.isRequired,
+  searchValue: PropTypes.string,
+  handleSearchInput: PropTypes.func.isRequired
+}
 export default SearchBar;
