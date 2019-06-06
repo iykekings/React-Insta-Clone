@@ -63,9 +63,10 @@ export default class PostsPage extends Component {
     addComment = (e, id) => {
         e.preventDefault();
         let input = e.target.querySelector('input[type="text"]');
+        const username = JSON.parse(localStorage.getItem('user'))['user']['username'];
         const newPosts = this.state.posts.map(post => {
             if (post.id === id && !!input.value) {
-                post.comments.push({ username: 'User', text: input.value });
+                post.comments.push({ username, text: input.value });
             }
             return post;
         });
