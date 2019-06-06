@@ -4,6 +4,7 @@
 
 .comment-container {
   margin-top: 3px;
+  cursor: pointer;
 }
 .comment-container:hover .comment-icon {
   display: inline;
