@@ -2,6 +2,7 @@ section.all-posts {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 5vw;
 }
 
 img {

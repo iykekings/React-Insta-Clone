@@ -16,7 +16,7 @@ const Comment = ({ username, text, id, deleteComment, postId }) => {
         data-key={id}
         onClick={() => deleteComment(id, postId)}
       >
-        <Icon icon="delete" fill="#2a2a2a" viewBox="0 0 550 700" />
+        <Icon icon="delete" fill="#2a2a2a" viewBox="0 0 550 700" width="30px" />
       </div>
     </div>
   );

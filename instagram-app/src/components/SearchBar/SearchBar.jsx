@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './SearchBar.css';
 import logo from '../../assets/logo.png';
 import Icon from '../Icons/Icon';
 import styled from 'styled-components';
@@ -10,7 +9,7 @@ const SearchInput = styled.div`
   height: 2.2rem;
 `;
 
-const Search = styled.div`
+const Header = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,6 +46,7 @@ const Spacer = styled.div`
 const InputBg = styled.div`
   position: absolute;
   display: flex;
+  opacity: 1;
   align-items: center;
   color: grey;
   width: 100%;
@@ -72,6 +72,9 @@ const InputMain = styled.div`
       border: 2px solid lightgray;
       }
     }
+    &:focus-within + div {
+      opacity: 0.1;
+    }
 `;
 const iconStyles = {
     fill: "#2a2a2a",
@@ -80,7 +83,7 @@ const iconStyles = {
   }
 const SearchBar = ({ runSearch, searchValue, handleSearchInput }) => {
   return (
-    <Search>
+    <Header>
       <div className="s-logo">
         <Icon icon="instagram" fill="#2a2a2a" width="40%" padding="0.7rem" />
         <ImgDiv>
@@ -89,15 +92,6 @@ const SearchBar = ({ runSearch, searchValue, handleSearchInput }) => {
       </div>
       <Spacer />
       <SearchInput>
-        <InputBg>
-          <Icon
-          icon="search"
-          fill="grey"
-            width="11px"
-          padding="0"
-          margin="0 4px 0 0" />
-          <span>Search</span>
-        </InputBg>
         <InputMain>
           <form onSubmit={e => runSearch(e)}>
             <input
@@ -109,6 +103,15 @@ const SearchBar = ({ runSearch, searchValue, handleSearchInput }) => {
             />
           </form>
         </InputMain>
+        <InputBg>
+          <Icon
+            icon="search"
+            fill="grey"
+            width="11px"
+            padding="0"
+            margin="0 4px 0 0" />
+          <span>Search</span>
+        </InputBg>
       </SearchInput>
       <Spacer />
       <div className="s-icons">
@@ -125,7 +128,7 @@ const SearchBar = ({ runSearch, searchValue, handleSearchInput }) => {
           {...iconStyles}
         />
       </div>
-    </Search>
+    </Header>
   );
 };
 
