@@ -16,6 +16,9 @@ const LoginTitle = styled.h1`
 const LoginHeader = styled.div`
     display: flex;
   align-items: center;
+    @media(max-width: 500px) {
+    flex-direction: column;
+    }
 `;
 const LoginForm = styled.form`
     display: flex;
@@ -41,6 +44,7 @@ const LoginSubmit = styled(LoginInput)`
 const LoginBox = styled.div`
      border: 1px solid gray;
   padding: 2rem;
+  max-width: 400px;
   width: 100%;
   border-radius: 5px;
   box-shadow: 2px 2px 12px #00000026;
