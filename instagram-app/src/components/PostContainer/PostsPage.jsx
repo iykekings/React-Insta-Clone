@@ -48,7 +48,7 @@ export default class PostsPage extends Component {
     runSearch(e) {
         e.preventDefault();
         const result = this.state.posts.filter(post =>
-            post.username.includes(this.state.searchValue)
+            post.username.toLowerCase().includes(this.state.searchValue.toLowerCase())
         );
         this.setState({ searchResult: result });
     }
@@ -95,6 +95,10 @@ export default class PostsPage extends Component {
             align-items: center;
             padding: 0 5vw;
         `;
+        const SearchHeader = styled.h1`
+            margin-bottom: 2rem;
+            color: #2a2a2a;
+        `;
         return (
             <>
                 <SearchBar
@@ -103,7 +107,9 @@ export default class PostsPage extends Component {
                     handleSearchInput={(val) => this.handleSearchInput(val)}
                 />
                 <Posts>
-                    {this.state.searchResult.length > 0 ? <h2 id="search-header">Search Results</h2> : ''}
+                    {this.state.searchResult.length > 0
+                        ? <SearchHeader>Search Results</SearchHeader>
+                        : ''}
                     {this.state.searchResult.length > 0
                         ? this.state.searchResult.map(post => (
                             <PostContainer
