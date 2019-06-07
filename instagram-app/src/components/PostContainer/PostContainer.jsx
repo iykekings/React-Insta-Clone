@@ -3,7 +3,6 @@ import moment from 'moment';
 import Icon from '../Icons/Icon';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import './PostContainer.css';
 import CommentSection from '../CommentSection/CommentSection';
 
 const Thumbnail = styled.div`

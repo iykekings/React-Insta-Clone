@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './PostsPage.css';
+import styled from 'styled-components';
 import SearchBar from '../SearchBar/SearchBar';
 import Storage from '../../localStorage';
 import dummyData from '../../assets/dummy-data';
@@ -89,14 +89,20 @@ export default class PostsPage extends Component {
     };
 
     render() {
+        const Posts = styled.div`
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 5vw;
+        `;
         return (
-            <div className="PostsPage">
+            <>
                 <SearchBar
                     runSearch={e => this.runSearch(e)}
                     searchValue={this.state.searchValue}
                     handleSearchInput={(val) => this.handleSearchInput(val)}
                 />
-                <section className="all-posts">
+                <Posts>
                     {this.state.searchResult.length > 0 ? <h2 id="search-header">Search Results</h2> : ''}
                     {this.state.searchResult.length > 0
                         ? this.state.searchResult.map(post => (
@@ -117,8 +123,8 @@ export default class PostsPage extends Component {
                                 toggleLike={() => this.toggleLike(post.id)}
                             />
                         ))}
-                </section>
-            </div>
+                </Posts>
+            </>
         );
     }
 }
