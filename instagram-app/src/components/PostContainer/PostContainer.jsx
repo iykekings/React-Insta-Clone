@@ -32,7 +32,9 @@ width: 100%;
 height: ${props => props.height || "100%"};
 object-fit: cover;
 `;
-
+const CommentIcon = styled.div`
+  width: 100%;
+`;
 const Likes = styled.p`
   font-weight: 500;
   margin-bottom: 5px;
@@ -49,7 +51,7 @@ const PostMetaData = styled.div`
 `;
 
 const CommentForm = styled.form`
-   display: flex;
+  display: ${props => props.displayForm ? 'none' : "flex"};
   padding: 0.5rem 0;
   align-items: center;
   border-top: 1px solid lightgray;
@@ -101,7 +103,9 @@ const PostContainer = props => {
             fill={!!props.liked ? 'deeppink' : '#2a2a2a'}
             toggleLike={() => props.toggleLike(props.id)}
           />
-          <Icon icon="comment" fill="#2a2a2a" />
+          <CommentIcon onClick={() => props.toggleCommentForm(props.id)}>
+            <Icon icon="comment" fill="#2a2a2a" />
+          </CommentIcon>
         </PostIcons>
         <Likes>{props.likes} likes</Likes>
         <CommentSection
@@ -109,7 +113,8 @@ const PostContainer = props => {
         deleteComment={props.deleteComment}
         postId={props.id} />
         <Timestamp>{getTime(props.timestamp)}</Timestamp>
-        <CommentForm onSubmit={(e) => props.addComment(e, props.id)}>
+        <CommentForm displayForm={props.displayCommentForm}
+         onSubmit={(e) => props.addComment(e, props.id)}>
           <input
             type="text"
             name="comment"
@@ -133,6 +138,7 @@ PostContainer.propTypes = {
   comments: PropTypes.arrayOf(PropTypes.object),
   liked: PropTypes.bool,
   toggleLike: PropTypes.func,
+  displayCommentForm: PropTypes.bool.isRequired,
   addComment: PropTypes.func,
   deleteComment: PropTypes.func
 };

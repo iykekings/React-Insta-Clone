@@ -11,7 +11,12 @@ export default class PostsPage extends Component {
         this.state = {
             posts: [],
             searchValue: '',
-            searchResult: []
+            searchResult: [],
+            comments: {
+                '12347': false,
+                 '12345': false,
+                 '12346': true
+        }
         };
         this.store = new Storage('posts');
     }
@@ -87,6 +92,11 @@ export default class PostsPage extends Component {
         });
         this.setState({ posts: [...newPosts] });
     };
+    toggleCommentForm = (postId) => {
+        const comments = this.state.comments;
+        comments[postId] = !comments[postId]
+        this.setState({comments})
+    }
 
     render() {
         const Posts = styled.div`
@@ -113,20 +123,24 @@ export default class PostsPage extends Component {
                     {this.state.searchResult.length > 0
                         ? this.state.searchResult.map(post => (
                             <PostContainer
+                                displayCommentForm={this.state.comments[post.id]}
                                 deleteComment={this.deleteComment}
                                 key={post.username}
                                 {...post}
                                 addComment={e => this.addComment(e, post.id)}
                                 toggleLike={this.toggleLike}
+                                toggleCommentForm={this.toggleCommentForm}
                             />
                         ))
                         : this.state.posts.map(post => (
                             <PostContainer
+                                displayCommentForm={this.state.comments[post.id]}
                                 deleteComment={this.deleteComment}
                                 key={post.username}
                                 {...post}
                                 addComment={e => this.addComment(e, post.id)}
                                 toggleLike={() => this.toggleLike(post.id)}
+                                toggleCommentForm={this.toggleCommentForm}
                             />
                         ))}
                 </Posts>
