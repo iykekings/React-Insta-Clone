@@ -41,6 +41,7 @@ const LoginSubmit = styled(LoginInput)`
 const LoginBox = styled.div`
      border: 1px solid gray;
   padding: 2rem;
+  width: 100%;
   border-radius: 5px;
   box-shadow: 2px 2px 12px #00000026;
 `;
