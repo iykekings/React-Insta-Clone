@@ -1,24 +1,28 @@
 import React from 'react';
+import styled from 'styled-components';
 import Comment from './Comment';
 import PropTypes from 'prop-types';
-import './CommentSection.css';
+
+const Comments = styled.div``;
 
 const CommentSection = ({ comments, deleteComment, postId }) => {
   return (
-    <div className="comments">
+    <Comments>
       {comments.map(comment => (
-        <Comment key={comment.text}
-        id={comment.text+comment.username}
-        deleteComment={deleteComment}
+        <Comment
+          key={comment.text}
+          id={comment.text + comment.username}
+          deleteComment={deleteComment}
           postId={postId}
-        {...comment} />
+          {...comment}
+        />
       ))}
-    </div>
+    </Comments>
   );
 };
 CommentSection.propTypes = {
   comments: PropTypes.arrayOf(PropTypes.object),
   deleteComment: PropTypes.func,
   postId: PropTypes.string
-}
+};
 export default CommentSection;
