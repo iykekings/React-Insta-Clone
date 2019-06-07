@@ -1,6 +1,58 @@
 import React, {useState} from 'react';
-import './Login.css';
+import styled from 'styled-components';
 import Icon from '../Icons/Icon';
+
+const LoginTitle = styled.h1`
+    display: flex;
+  color: #472b2b;
+  &:before {
+  content: ' ';
+  height: 45px;
+  width: 1.3px;
+  margin: 0 1rem;
+  background: grey;
+}
+`;
+const LoginHeader = styled.div`
+    display: flex;
+  align-items: center;
+`;
+const LoginForm = styled.form`
+    display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+`;
+const LoginInput = styled.input`
+    margin-bottom: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 1.3rem;
+  border: none;
+  border-bottom: 1px solid grey;
+  outline: none;
+`;
+const LoginSubmit = styled(LoginInput)`
+  border-bottom: none;
+  background: #472b2b;
+  color: white;
+  margin-top: 1rem;
+  border-radius: 5px;
+`;
+
+const LoginBox = styled.div`
+     border: 1px solid gray;
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 2px 2px 12px #00000026;
+`;
+const LoginContainer = styled.div`
+    height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5vw;
+`;
 
 const Login = () => {
     const [user, setUser] = useState({username: '', password: ''});
@@ -15,21 +67,22 @@ const Login = () => {
        localStorage.setItem('user', JSON.stringify({user}));
     }
     return (
-        <div className="login-container">
-
-            <div className="login-header">
-                <Icon icon="instagram" fill="#2a2a2a" />
-                <h1>Login Here</h1>
-            </div>
-            <form onSubmit={loginUser} id="loginForm">
-                <input type="text" placeholder="username"
+        <LoginContainer>
+            <LoginBox>
+            <LoginHeader>
+                <Icon icon="instagram" fill="#472b2b" width="80px" />
+                <LoginTitle>Login Here</LoginTitle>
+            </LoginHeader>
+            <LoginForm onSubmit={loginUser} id="loginForm">
+                <LoginInput type="text" placeholder="username"
                 onChange={(e) => handleUsernameInput(e.target.value)}/>
-                <input type="password" placeholder="password"
+                <LoginInput type="password" placeholder="password"
                     onChange={(e) => handlePasswordInput(e.target.value)}/>
-                <input type="submit" value="Login"/>
-            </form>
-        </div>
+                <LoginSubmit type="submit" value="Login"/>
+            </LoginForm>
+            </LoginBox>
+        </LoginContainer>
     )
 }
 
-export default Login
+export default Login;
