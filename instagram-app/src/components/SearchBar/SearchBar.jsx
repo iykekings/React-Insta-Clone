@@ -14,9 +14,14 @@ const Header = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1rem 5vw;
-  margin: 0 2rem;
   border-bottom: 1px lightgray solid;
   margin-bottom: 4rem;
+  @media (max-width: 700px) {
+    flex-direction: column;
+    & > * {
+      margin-bottom: 6px;
+    }
+  }
   & > * {
     display: flex;
     align-items: center;
