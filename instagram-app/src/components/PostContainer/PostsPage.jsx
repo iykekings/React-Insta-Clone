@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './PostsPage.css';
+import styled from 'styled-components';
 import SearchBar from '../SearchBar/SearchBar';
 import Storage from '../../localStorage';
 import dummyData from '../../assets/dummy-data';
@@ -11,7 +11,12 @@ export default class PostsPage extends Component {
         this.state = {
             posts: [],
             searchValue: '',
-            searchResult: []
+            searchResult: [],
+            comments: {
+                '12347': false,
+                 '12345': false,
+                 '12346': true
+        }
         };
         this.store = new Storage('posts');
     }
@@ -48,7 +53,7 @@ export default class PostsPage extends Component {
     runSearch(e) {
         e.preventDefault();
         const result = this.state.posts.filter(post =>
-            post.username.includes(this.state.searchValue)
+            post.username.toLowerCase().includes(this.state.searchValue.toLowerCase())
         );
         this.setState({ searchResult: result });
     }
@@ -75,7 +80,6 @@ export default class PostsPage extends Component {
     };
 
     deleteComment = (id, postId) => {
-        console.log(id, postId);
         const newPosts = this.state.posts.map(post => {
             let newPost = [];
             if (post.id === postId) {
@@ -87,40 +91,60 @@ export default class PostsPage extends Component {
             return newPost;
         });
         this.setState({ posts: [...newPosts] });
-        // console.table(newPosts);
     };
+    toggleCommentForm = (postId) => {
+        const comments = this.state.comments;
+        comments[postId] = !comments[postId]
+        this.setState({comments})
+    }
 
     render() {
+        const Posts = styled.div`
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 5vw;
+        `;
+        const SearchHeader = styled.h1`
+            margin-bottom: 2rem;
+            color: #2a2a2a;
+        `;
         return (
-            <div className="PostsPage">
+            <>
                 <SearchBar
                     runSearch={e => this.runSearch(e)}
                     searchValue={this.state.searchValue}
                     handleSearchInput={(val) => this.handleSearchInput(val)}
                 />
-                <section className="all-posts">
-                    {this.state.searchResult.length > 0 ? <h2 id="search-header">Search Results</h2> : ''}
+                <Posts>
+                    {this.state.searchResult.length > 0
+                        ? <SearchHeader>Search Results</SearchHeader>
+                        : ''}
                     {this.state.searchResult.length > 0
                         ? this.state.searchResult.map(post => (
                             <PostContainer
+                                displayCommentForm={this.state.comments[post.id]}
                                 deleteComment={this.deleteComment}
                                 key={post.username}
                                 {...post}
                                 addComment={e => this.addComment(e, post.id)}
                                 toggleLike={this.toggleLike}
+                                toggleCommentForm={this.toggleCommentForm}
                             />
                         ))
                         : this.state.posts.map(post => (
                             <PostContainer
+                                displayCommentForm={this.state.comments[post.id]}
                                 deleteComment={this.deleteComment}
                                 key={post.username}
                                 {...post}
                                 addComment={e => this.addComment(e, post.id)}
                                 toggleLike={() => this.toggleLike(post.id)}
+                                toggleCommentForm={this.toggleCommentForm}
                             />
                         ))}
-                </section>
-            </div>
+                </Posts>
+            </>
         );
     }
 }
